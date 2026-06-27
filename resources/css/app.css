@@ -1,0 +1,1267 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
+
+    --color-accent: var(--color-neutral-800);
+    --color-accent-content: var(--color-neutral-800);
+    --color-accent-foreground: var(--color-white);
+}
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-white);
+        --color-accent-content: var(--color-white);
+        --color-accent-foreground: var(--color-neutral-800);
+    }
+}
+
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply  !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+/* \[:where(&)\]:size-4 {
+    @apply size-4;
+} */
+
+:root {
+  --font-size: 16px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+  /* Compensa la cabecera fija al desplazarse por anclas (#id) */
+  scroll-padding-top: 5rem;
+}
+
+/* ── Controles de formulario nativos: garantiza texto oscuro y fondo claro ──────
+   Se excluyen [data-flux-control] para no interferir con los estilos de Flux
+   en el panel de administración. Defensa en profundidad: aunque el modo oscuro
+   no se active en el sitio público, este override previene cualquier herencia
+   inesperada del token CSS --foreground sobre campos sin clase de color explícita. */
+@layer base {
+  input:not([data-flux-control]):not([type='checkbox']):not([type='radio']):not([type='range']):not([type='color']):not([type='submit']):not([type='reset']):not([type='button']),
+  textarea:not([data-flux-control]),
+  select:not([data-flux-control]) {
+    @apply text-gray-900;
+  }
+}
+
+/* React Slick Carousel Custom Styles */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  user-select: none;
+  touch-action: pan-y;
+  perspective: 1000px;
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slick-slide.slick-active {
+  display: block;
+}
+
+/* 3D effect for slides */
+.slick-slide > div {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slick-slide.slick-current > div {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.slick-slide:not(.slick-current) > div {
+  transform: scale(0.95);
+  opacity: 0.7;
+}
+
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.slick-arrow:hover {
+  background: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.slick-prev {
+  left: 20px;
+}
+
+.slick-next {
+  right: 20px;
+}
+
+.slick-arrow::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid #2563eb;
+  border-right: 2px solid #2563eb;
+}
+
+.slick-prev::before {
+  transform: rotate(-135deg);
+  margin-left: 6px;
+}
+
+.slick-next::before {
+  transform: rotate(45deg);
+  margin-left: -2px;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: -40px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slick-dots li {
+  width: 12px;
+  height: 12px;
+  margin: 0;
+}
+
+.slick-dots li button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #cbd5e1;
+  cursor: pointer;
+  font-size: 0;
+  transition: all 0.3s;
+}
+
+.slick-dots li.slick-active button {
+  background: #2563eb;
+  width: 32px;
+  border-radius: 6px;
+}
+
+.slick-dots li button:hover {
+  background: #94a3b8;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   ESTILOS: Sistema de autenticación — Modal, Avatar, Dropdown
+   Todos los estilos usan clases BEM-like para evitar colisiones con Tailwind
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Animaciones de entrada ──────────────────────────────────────────────── */
+
+/* Animación scale-in con rebote suave para el modal de login */
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Animación de aparición del dropdown de perfil */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animación suave del overlay del modal */
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-scale-in {
+  animation: modalScaleIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.dropdown-scale-in {
+  animation: dropdownFadeIn 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Modal: Overlay / Backdrop ───────────────────────────────────────────── */
+
+.auth-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  /* Fondo oscuro semi-transparente con desenfoque */
+  background-color: rgba(3, 2, 19, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: overlayFadeIn 0.18s ease both;
+}
+
+/* ── Modal: Card principal ───────────────────────────────────────────────── */
+
+.auth-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+/* ── Modal: Encabezado ───────────────────────────────────────────────────── */
+
+.auth-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1.125rem;
+  padding: 2rem 2rem 1.75rem;
+  /* Degradado sutil en el encabezado */
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+  position: relative;
+}
+
+.auth-modal-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+}
+
+.auth-modal-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.auth-modal-subtitle {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0.125rem 0 0;
+  line-height: 1.4;
+}
+
+/* Botón de cierre en esquina superior derecha */
+.auth-modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.auth-modal-close-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.auth-modal-close-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* ── Modal: Cuerpo del formulario ────────────────────────────────────────── */
+
+.auth-modal-body {
+  padding: 2rem 2rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Separa los grupos de campos entre sí (label+input+error de cada uno) */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.375rem;
+}
+
+/* ── Error de autenticación (banner) ─────────────────────────────────────── */
+
+.auth-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.625rem;
+  color: #dc2626;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.auth-error-icon {
+  flex-shrink: 0;
+  color: #ef4444;
+}
+
+/* ── Aviso de éxito (ej. tras registro) ──────────────────────────────────── */
+
+.auth-success-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 0.625rem;
+  color: #16a34a;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.auth-success-icon {
+  flex-shrink: 0;
+  color: #22c55e;
+}
+
+/* ── Grupos de campos del formulario ─────────────────────────────────────── */
+
+.auth-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.auth-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #374151;
+  line-height: 1;
+}
+
+/* Contenedor del input con ícono a la izquierda */
+.auth-input-wrap {
+  position: relative;
+}
+
+.auth-input-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 2.75rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background-color: #f9fafb;
+  color: #111827;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  transition: border-color 0.15s, background-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.auth-input:focus {
+  border-color: #2563eb;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.auth-input:focus + .auth-input-icon,
+.auth-input-wrap:focus-within .auth-input-icon {
+  color: #2563eb;
+}
+
+/* Estado de error del input */
+.auth-input--error {
+  border-color: #ef4444;
+  background-color: #fff7f7;
+}
+
+.auth-input--error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+/* Mensaje de error por campo */
+.auth-field-error {
+  font-size: 0.75rem;
+  color: #dc2626;
+  margin: 0;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ── Fila "Recordarme" ───────────────────────────────────────────────────── */
+
+.auth-remember-row {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.auth-remember-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #374151;
+  cursor: pointer;
+  user-select: none;
+}
+
+.auth-checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: #2563eb;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── Botón de envío ──────────────────────────────────────────────────────── */
+
+.auth-submit-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 56px;
+  margin-top: 0.25rem;
+}
+
+.auth-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+  transform: translateY(-1px);
+}
+
+.auth-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.auth-submit-btn--loading,
+.auth-submit-btn:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ── Spinner de carga ─────────────────────────────────────────────────────── */
+
+.auth-spinner-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auth-spinner {
+  width: 18px;
+  height: 18px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ESTILOS: Avatar de usuario y dropdown del perfil
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Contenedor del dropdown ─────────────────────────────────────────────── */
+
+.user-dropdown-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Botón disparador del menú de usuario ────────────────────────────────── */
+
+.user-menu-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.625rem 0.375rem 0.375rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 2rem;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.18s;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.user-menu-trigger:hover {
+  border-color: #93c5fd;
+  background: #eff6ff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+}
+
+.user-menu-trigger:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* ── Avatar con foto de perfil ───────────────────────────────────────────── */
+
+.user-avatar-photo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #dbeafe;
+  flex-shrink: 0;
+}
+
+/* ── Avatar con iniciales (fallback sin foto) ────────────────────────────── */
+
+.user-avatar-initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  /* Degradado azul corporativo */
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 60%, #1d4ed8 100%);
+  color: #ffffff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}
+
+/* Variante pequeña para el menú móvil */
+.user-avatar-initials--sm {
+  width: 28px;
+  height: 28px;
+  font-size: 0.625rem;
+}
+
+/* ── Nombre del usuario en el trigger ────────────────────────────────────── */
+
+.user-name-label {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #1e293b;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* ── Chevron del dropdown ────────────────────────────────────────────────── */
+
+.user-chevron {
+  color: #64748b;
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+
+/* ── Panel del dropdown ──────────────────────────────────────────────────── */
+
+.user-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 220px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.875rem;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.12),
+    0 4px 10px -6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 100;
+}
+
+/* ── Información del usuario en el dropdown ──────────────────────────────── */
+
+.dropdown-user-info {
+  padding: 0.875rem 1rem 0.75rem;
+  background: linear-gradient(135deg, #f8faff 0%, #f0fdf4 100%);
+}
+
+.dropdown-user-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-user-email {
+  font-size: 0.6875rem;
+  color: #64748b;
+  margin: 0.125rem 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Divisor del dropdown ─────────────────────────────────────────────────── */
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #f1f5f9;
+  margin: 0;
+  border: none;
+}
+
+/* ── Ítems del dropdown ──────────────────────────────────────────────────── */
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.625rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #374151;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.12s, color 0.12s;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+.dropdown-item:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
+}
+
+/* Variante para el ítem de "Panel de Control" del administrador */
+.dropdown-item--admin {
+  color: #1d4ed8;
+  position: relative;
+}
+
+.dropdown-item--admin:hover {
+  background-color: #eff6ff;
+  color: #1e40af;
+}
+
+/* Badge "Admin" dentro del ítem del panel de control */
+.dropdown-admin-badge {
+  margin-left: auto;
+  padding: 0.1rem 0.45rem;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: #ffffff;
+  font-size: 0.625rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Variante peligrosa para el ítem "Cerrar Sesión" */
+.dropdown-item--danger {
+  color: #dc2626;
+}
+
+.dropdown-item--danger:hover {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+/* ── Responsivo: ajustes para pantallas pequeñas ─────────────────────────── */
+
+@media (max-width: 400px) {
+  .auth-modal-card {
+    border-radius: 1rem;
+    margin: 0;
+  }
+
+  .auth-modal-header {
+    padding: 1.25rem 1.25rem 1rem;
+  }
+
+  .auth-modal-body {
+    padding: 1.25rem;
+  }
+
+  .user-name-label {
+    display: none; /* Oculta el nombre en pantallas muy pequeñas */
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   ESTILOS: Panel de Administración — Layout fijo con scroll solo en main
+   Convención BEM-like (admin-*) para evitar colisiones con clases del sitio público
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Scrollbar personalizada para el área principal del dashboard ──────────── */
+
+/* Solo aplica en navegadores WebKit (Chrome, Edge, Safari) */
+.admin-main-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.admin-main-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-main-scroll::-webkit-scrollbar-thumb {
+  /* Barra de scroll sutil, visible al hover */
+  background-color: #d1d5db;
+  border-radius: 9999px;
+}
+
+.admin-main-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af;
+}
+
+/* Firefox: scrollbar delgada */
+.admin-main-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+/* ── Portada (thumbnail) de items en widgets de Noticias y Eventos ─────────── */
+
+/* Contenedor de la miniatura cuadrada con proporción fija */
+.widget-item-thumbnail {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5e7eb;
+}
+
+/* Imagen de portada ocupa todo el contenedor sin distorsión */
+.widget-item-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+/* Zoom sutil al hacer hover sobre el ítem */
+.widget-item-card:hover .widget-item-thumbnail img {
+  transform: scale(1.06);
+}
+
+/* Ícono de fallback cuando no hay imagen */
+.widget-item-thumbnail--fallback {
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+}
+
+/* ── Barra de ocupación de capacidad en eventos ────────────────────────────── */
+
+.widget-capacity-bar {
+  height: 4px;
+  border-radius: 9999px;
+  background-color: #e5e7eb;
+  overflow: hidden;
+}
+
+.widget-capacity-bar__fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  transition: width 0.3s ease;
+}
+
+/* Color de advertencia cuando la capacidad supera el 80% */
+.widget-capacity-bar__fill--warning {
+  background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Color de peligro cuando está lleno (100%) */
+.widget-capacity-bar__fill--full {
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+}
+
+/* ── Adaptación responsiva del sidebar en móviles ──────────────────────────── */
+
+@media (max-width: 1023px) {
+  /* En móvil, el sidebar colapsado ocupa 0px en vez de w-20 */
+  .admin-sidebar-mobile-hidden {
+    width: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   ESTILOS: Editor de Contenido Trix
+   trix-editor (panel admin) y .trix-content (HTML publicado en el detalle de
+   noticia) comparten los selectores de formato — encabezados, listas, citas,
+   código, enlaces — para que la edición y la publicación luzcan coherentes.
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* Barra de herramientas: alineada con los bordes y colores del admin */
+trix-toolbar {
+  display: block;
+  border: 1px solid #d1d5db;   /* gray-300 */
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: #f9fafb;   /* gray-50 */
+  padding: 0.5rem 0.75rem;
+}
+
+trix-toolbar .trix-button-row {
+  flex-wrap: wrap;
+}
+
+trix-toolbar .trix-button.trix-active {
+  background-color: #dbeafe;   /* blue-100 */
+}
+
+/* Ocultar el botón de adjuntar archivos: las imágenes del cuerpo van al
+   slider de medios, no inline en el editor (paridad con Quill). */
+trix-toolbar [data-trix-button-group="file-tools"] {
+  display: none;
+}
+
+/* Área del editor */
+trix-editor {
+  display: block;
+  border: 1px solid #d1d5db;   /* gray-300 */
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #111827;              /* gray-900 */
+  padding: 1rem 1.25rem;
+  min-height: 380px;
+}
+
+/* Placeholder del editor */
+trix-editor:empty:not(:focus)::before {
+  color: #9ca3af;              /* gray-400 */
+  font-style: normal;
+}
+
+/* Contenido publicado en la página de detalle de noticia */
+.trix-content {
+  font-size: 1.125rem;
+  line-height: 1.7777778;
+  color: #374151;              /* gray-700 */
+}
+
+/* Bloques (Trix envuelve cada párrafo en <div>) */
+.trix-content > div, trix-editor > div {
+  margin: 0.75em 0;
+}
+
+/* Encabezados — Trix solo crea <h1>; <h2>/<h3>/<h4> se conservan para
+   artículos antiguos creados con Quill. */
+.trix-content :is(h1, h2, h3, h4), trix-editor :is(h1, h2, h3, h4) {
+  color: #111827;              /* gray-900 */
+}
+
+.trix-content h1, trix-editor h1 { font-size: 1.75em; font-weight: 700; margin: 0.75em 0 0.4em; }
+.trix-content h2, trix-editor h2 { font-size: 1.4em;  font-weight: 700; margin: 0.75em 0 0.4em; }
+.trix-content h3, trix-editor h3 { font-size: 1.15em; font-weight: 600; margin: 0.75em 0 0.4em; }
+.trix-content h4, trix-editor h4 { font-size: 1em;    font-weight: 600; margin: 0.75em 0 0.4em; }
+
+/* Listas */
+.trix-content ul, .trix-content ol,
+trix-editor ul, trix-editor ol {
+  padding-left: 1.5em;
+  margin: 0.6em 0;
+}
+
+/* Bloques de cita */
+.trix-content blockquote, trix-editor blockquote {
+  border-left: 4px solid #3b82f6;  /* blue-500 */
+  padding-left: 1em;
+  font-style: italic;
+  margin: 0.75em 0;
+}
+
+trix-editor blockquote {
+  color: #6b7280;   /* gray-500 */
+}
+
+.trix-content blockquote {
+  color: #1e3a8a;          /* blue-900 */
+  background-color: #eff6ff;  /* blue-50 */
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 1rem;
+}
+
+/* Bloques y fragmentos de código */
+.trix-content pre, trix-editor pre,
+.trix-content code, trix-editor code {
+  background: #1e293b;    /* slate-800 */
+  color: #e2e8f0;
+  border-radius: 0.375rem;
+}
+
+.trix-content pre, trix-editor pre {
+  padding: 0.875rem 1.125rem;
+  font-size: 0.875em;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.trix-content code, trix-editor code {
+  padding: 0.15em 0.4em;
+  font-size: 0.875em;
+}
+
+.trix-content pre code, trix-editor pre code {
+  padding: 0;
+  background: transparent;
+}
+
+/* Enlaces */
+.trix-content a, trix-editor a {
+  color: #2563eb;   /* blue-600 */
+  text-decoration: underline;
+}
+
+/* Texto tachado */
+.trix-content del, trix-editor del {
+  text-decoration: line-through;
+}
+
+/* Responsivo: en móvil la toolbar reduce espacio */
+@media (max-width: 640px) {
+  trix-toolbar {
+    padding: 0.35rem 0.5rem;
+  }
+
+  trix-toolbar .trix-button-group {
+    margin-right: 6px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   ESTILOS: Selector de fecha personalizado (Formulario de Noticias)
+   El campo "Fecha de Publicación" usa un botón propio (ícono calendar-days +
+   showPicker()) para abrir el selector nativo. Se oculta el indicador nativo
+   de Chrome/Edge/Safari para no duplicar el ícono de calendario.
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.admin-date-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  pointer-events: none;
+}
