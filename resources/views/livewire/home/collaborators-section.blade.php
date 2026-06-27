@@ -18,6 +18,7 @@
 --}}
 
 {{-- Sin colaboradores activos: la sección no se renderiza --}}
+<div>
 @if (! empty($collaborators))
     <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div class="container mx-auto px-4">
@@ -52,3 +53,4 @@
         </div>
     </section>
 @endif
+</div>
